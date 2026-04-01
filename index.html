@@ -54,10 +54,13 @@ html, body {
     100% { transform: translateY(200px); opacity: 0; }
 }
 
+/* CARD RESPONSIVE */
 .card {
     position: relative;
-    width: 390px;
-    height: 550px;
+    width: 90vw;
+    max-width: 390px;
+    height: 80vh;
+    max-height: 550px;
     border: 10px solid var(--border-color);
     box-shadow: inset 10px 0px 15px rgba(0,0,0,0.1);
     background-color: rgb(230, 190, 250);
@@ -80,12 +83,8 @@ html, body {
 }
 
 /* HIDE SCROLLBAR */
-.text-container::-webkit-scrollbar {
-    display: none;
-}
-.text-container {
-    scrollbar-width: none;
-}
+.text-container::-webkit-scrollbar { display: none; }
+.text-container { scrollbar-width: none; }
 
 #head {
     font-family: 'Nobile', sans-serif;
@@ -102,7 +101,13 @@ html, body {
     font-style: italic;
     font-size: 0.85em;
     margin-top: 10px;
-    padding-right: 5px;
+}
+
+/* CENTER TEXT BAWAH */
+.text-container p:last-child {
+    text-align: center;
+    width: 100%;
+    margin-top: 15px;
 }
 
 /* CURSOR */
@@ -133,6 +138,7 @@ html, body {
     color: white;
 }
 
+/* CAKE */
 .cake {
     position: absolute;
     width: 100px;
@@ -187,6 +193,13 @@ html, body {
 @keyframes flicker {
     50% { opacity: 0.5; }
 }
+
+/* MOBILE TWEAK */
+@media (max-width: 500px) {
+    #head { font-size: 1.1em; }
+    #typing-text { font-size: 0.8em; }
+    .hover-text { font-size: 14px; }
+}
 </style>
 </head>
 
@@ -212,7 +225,7 @@ html, body {
     <div class="text-container">
         <p id="head">Happy Birthday Eyinnn!</p>
         <div id="typing-text"></div>
-        <p style="text-align: center; width:100%;">You're Still My Favorite Person</p>
+        <p>You're Still My Favorite Person</p>
     </div>
 </div>
 
@@ -242,7 +255,7 @@ setInterval(() => {
 // TAP OPEN + TYPING
 const card = document.querySelector('.card');
 
-const text = `Aloooo Eyinnnn! 🥳
+const text = `Aloooo Eyinnnn! 
 Happy Birthday yaaa!
 Gila ya, nambah tua lagi lu wkwkwk  
 Tapi gapapa, yang penting makin dewasa dikit lah ya 
@@ -250,11 +263,11 @@ Semoga sehat terus, bahagia terus,
 yang lo pengen bisa tercapai satu-satu.
 Seblaknya dikurangin ya 
 Makasih udah jadi orang yang selalu seru
-dan punya tempat sendiri di hidup gw.
+dan punya tempat sendiri di hidup gue.
 Maaf cuma bisa ngasih ini,
-tapi doa gw yang terbaik buat lo.
+tapi doa gue yang terbaik buat lo.
 Stay jadi Eyin yang gue kenal yaa   
-dan jangan lupa traktir hehehehehe `;
+dan jangan lupa traktir hehehe;
 
 let i = 0;
 
