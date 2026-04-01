@@ -48,13 +48,31 @@ html, body {
     opacity: 0;
 }
 
+/* FLOWER */
+.flower {
+    position: absolute;
+    top: -20px;
+    width: 8px;
+    height: 8px;
+    background: pink;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: fallFlower linear infinite;
+}
+
 @keyframes fall {
     0% { transform: translateY(0); opacity: 0; }
     10% { opacity: 1; }
     100% { transform: translateY(200px); opacity: 0; }
 }
 
-/* CARD FIX ALL DEVICE */
+@keyframes fallFlower {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(300px) rotate(180deg); opacity: 0; }
+}
+
+/* CARD */
 .card {
     position: relative;
     width: min(92vw, 400px);
@@ -72,21 +90,9 @@ html, body {
         width: 94vw;
         height: 88vh;
     }
-
-    html, body {
-        padding: 8px;
-    }
-
-    #head {
-        font-size: 1.4em;
-    }
-
-    #typing-text {
-        font-size: 0.95em;
-    }
 }
 
-/* OPEN CARD */
+/* OPEN */
 .card.open .front {
     transform: perspective(800px) rotateY(-170deg);
 }
@@ -102,26 +108,23 @@ html, body {
     overflow-y: auto;
 }
 
-/* HIDE SCROLL */
 .text-container::-webkit-scrollbar { display: none; }
-.text-container { scrollbar-width: none; }
 
 #head {
     font-family: 'Nobile', sans-serif;
-    font-size: 1.3em;
     text-align: center;
 }
 
 #typing-text {
-    white-space: pre-line;
     text-align: center;
     font-family: 'Nobile';
     color: #580803;
     font-style: italic;
-    font-size: 0.9em;
     margin-top: 10px;
+    line-height: 1.4;
 }
 
+/* TEXT BAWAH */
 .text-container p:last-child {
     text-align: center;
     margin-top: 15px;
@@ -265,22 +268,32 @@ setInterval(() => {
     for (let i = 0; i < 6; i++) createParticle();
 }, 200);
 
+// FLOWERS
+function createFlower() {
+    let f = document.createElement('div');
+    f.classList.add('flower');
+
+    f.style.left = Math.random() * 100 + '%';
+
+    let size = Math.random() * 6 + 4;
+    f.style.width = size + 'px';
+    f.style.height = size + 'px';
+
+    let duration = Math.random() * 5 + 3;
+    f.style.animationDuration = duration + 's';
+
+    container.appendChild(f);
+    setTimeout(() => f.remove(), duration * 1000);
+}
+
+setInterval(() => {
+    for (let i = 0; i < 2; i++) createFlower();
+}, 800);
+
 // TAP + TYPING
 const card = document.querySelector('.card');
 
-const text = `Aloooo Eyinnnn!
-Happy Birthday yaaa!
-Gila ya, nambah tua lagi lu wkwkwk  
-Tapi gapapa, yang penting makin dewasa dikit lah ya  
-Semoga sehat terus, bahagia terus,
-yang lu pengen bisa tercapai satu-satu.
-Seblaknya dikurangin ya  
-Makasih udah jadi orang yang selalu seru
-dan punya tempat sendiri di hidup gw.
-Maaf cuma bisa ngasih ini,
-tapi doa gue yang terbaik buat lo.
-Stay jadi Eyin yang gw kenal yaa  
-dan jangan lupa traktir hehehe`;
+const text = `Aloooo Eyinnnn! Maap Yakkk Telatt ,Happy Birthday yaaa! Gila ya, nambah tua lagi lu wkwkwk tapi gapapa yang penting makin dewasa dikit lah ,  ya semoga sehat terus bahagia terus yang lu pengen bisa tercapai satu-satu ,  seblaknya dikurangin ,  ya makasih udah jadi orang yang selalu seru dan punya tempat sendiri di hidup gw maaf gw cuma bisa ngasih ini tapi doa gw yang terbaik buat lu , stay jadi Eyin yang gw kenal yaa dan jangan lupa traktir yakkk heheheh`;
 
 let i = 0;
 
