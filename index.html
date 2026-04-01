@@ -54,13 +54,11 @@ html, body {
     100% { transform: translateY(200px); opacity: 0; }
 }
 
-/* CARD (FIX HP) */
+/* CARD FIX ALL DEVICE */
 .card {
     position: relative;
-    width: 92vw;
-    height: 75vh;
-    max-width: 400px;
-    max-height: 550px;
+    width: min(92vw, 400px);
+    height: min(85vh, 560px);
     border: 10px solid var(--border-color);
     border-radius: 15px;
     box-shadow: inset 10px 0px 15px rgba(0,0,0,0.1);
@@ -68,41 +66,49 @@ html, body {
     z-index: 2;
 }
 
-/* KHUSUS HP */
-@media (max-width: 500px) {
+/* HP FIX */
+@media (max-width: 600px) {
     .card {
-        width: 95vw;
-        height: 80vh;
+        width: 94vw;
+        height: 88vh;
     }
 
     html, body {
-        padding: 10px;
+        padding: 8px;
+    }
+
+    #head {
+        font-size: 1.4em;
+    }
+
+    #typing-text {
+        font-size: 0.95em;
     }
 }
 
-/* TAP OPEN */
+/* OPEN CARD */
 .card.open .front {
     transform: perspective(800px) rotateY(-170deg);
 }
 
+/* TEXT */
 .text-container {
-    width: 80%;
-    height: 80%;
+    width: 85%;
+    height: 85%;
     margin: auto;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     overflow-y: auto;
 }
 
-/* HIDE SCROLLBAR */
+/* HIDE SCROLL */
 .text-container::-webkit-scrollbar { display: none; }
 .text-container { scrollbar-width: none; }
 
 #head {
     font-family: 'Nobile', sans-serif;
     font-size: 1.3em;
-    margin: 15px auto;
     text-align: center;
 }
 
@@ -112,15 +118,14 @@ html, body {
     font-family: 'Nobile';
     color: #580803;
     font-style: italic;
-    font-size: 0.85em;
+    font-size: 0.9em;
     margin-top: 10px;
 }
 
-/* TEXT BAWAH */
 .text-container p:last-child {
     text-align: center;
-    width: 100%;
     margin-top: 15px;
+    font-weight: bold;
 }
 
 /* CURSOR */
@@ -132,6 +137,7 @@ html, body {
     50% { opacity: 0; }
 }
 
+/* FRONT */
 .front {
     position: absolute;
     width: 100%;
@@ -216,7 +222,7 @@ html, body {
 
 <div class="card">
     <div class="front">
-        <div class="hover-text">Tap Dongggg 😆</div>
+        <div class="hover-text">Tap Dongggg</div>
 
         <div class="cake">
             <div class="layer layer-bottom"></div>
@@ -259,22 +265,22 @@ setInterval(() => {
     for (let i = 0; i < 6; i++) createParticle();
 }, 200);
 
-// TAP OPEN + TYPING
+// TAP + TYPING
 const card = document.querySelector('.card');
 
-const text = `Aloooo Eyinnnn! 🥳
+const text = `Aloooo Eyinnnn!
 Happy Birthday yaaa!
-Gila ya, nambah tua lagi lu wkwkwk
-Tapi gapapa, yang penting makin dewasa dikit lah ya 
+Gila ya, nambah tua lagi lu wkwkwk  
+Tapi gapapa, yang penting makin dewasa dikit lah ya  
 Semoga sehat terus, bahagia terus,
 yang lo pengen bisa tercapai satu-satu.
-Seblaknya dikurangin ya
+Seblaknya dikurangin ya  
 Makasih udah jadi orang yang selalu seru
-dan punya tempat sendiri di hidup gw.
+dan punya tempat sendiri di hidup gue.
 Maaf cuma bisa ngasih ini,
-tapi doa gw yang terbaik buat lo.
+tapi doa gue yang terbaik buat lo.
 Stay jadi Eyin yang gue kenal yaa  
-dan jangan lupa traktir `;
+dan jangan lupa traktir hehehe`;
 
 let i = 0;
 
