@@ -54,17 +54,30 @@ html, body {
     100% { transform: translateY(200px); opacity: 0; }
 }
 
-/* CARD RESPONSIVE */
+/* CARD (FIX HP) */
 .card {
     position: relative;
-    width: 90vw;
-    max-width: 390px;
-    height: 80vh;
+    width: 92vw;
+    height: 75vh;
+    max-width: 400px;
     max-height: 550px;
     border: 10px solid var(--border-color);
+    border-radius: 15px;
     box-shadow: inset 10px 0px 15px rgba(0,0,0,0.1);
     background-color: rgb(230, 190, 250);
     z-index: 2;
+}
+
+/* KHUSUS HP */
+@media (max-width: 500px) {
+    .card {
+        width: 95vw;
+        height: 80vh;
+    }
+
+    html, body {
+        padding: 10px;
+    }
 }
 
 /* TAP OPEN */
@@ -103,7 +116,7 @@ html, body {
     margin-top: 10px;
 }
 
-/* CENTER TEXT BAWAH */
+/* TEXT BAWAH */
 .text-container p:last-child {
     text-align: center;
     width: 100%;
@@ -124,6 +137,7 @@ html, body {
     width: 100%;
     height: 100%;
     border: 10px solid var(--border-color);
+    border-radius: 15px;
     background-color: rgb(207, 45, 240);
     transform-origin: left;
     transition: 0.8s;
@@ -193,13 +207,6 @@ html, body {
 @keyframes flicker {
     50% { opacity: 0.5; }
 }
-
-/* MOBILE TWEAK */
-@media (max-width: 500px) {
-    #head { font-size: 1.1em; }
-    #typing-text { font-size: 0.8em; }
-    .hover-text { font-size: 14px; }
-}
 </style>
 </head>
 
@@ -255,19 +262,25 @@ setInterval(() => {
 // TAP OPEN + TYPING
 const card = document.querySelector('.card');
 
-const text = `Aloooo Eyinnnn! 
+const text = `Aloooo Eyinnnn! 🥳
 Happy Birthday yaaa!
-Gila ya, nambah tua lagi lu wkwkwk  
-Tapi gapapa, yang penting makin dewasa dikit lah ya 
+
+Gila ya, nambah tua lagi lu wkwkwk 😆  
+Tapi gapapa, yang penting makin dewasa dikit lah ya 😏
+
 Semoga sehat terus, bahagia terus,
 yang lo pengen bisa tercapai satu-satu.
-Seblaknya dikurangin ya 
+
+Seblaknya dikurangin ya 😭  
+
 Makasih udah jadi orang yang selalu seru
 dan punya tempat sendiri di hidup gue.
+
 Maaf cuma bisa ngasih ini,
 tapi doa gue yang terbaik buat lo.
-Stay jadi Eyin yang gue kenal yaa   
-dan jangan lupa traktir hehehe;
+
+Stay jadi Eyin yang gue kenal yaa ✨  
+dan jangan lupa traktir 😏`;
 
 let i = 0;
 
