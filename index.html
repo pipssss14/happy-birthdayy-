@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HBD</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Nobile:400italic,700italic');
+
+:root {
+    --border-color: #f9f9f9;
+    --vanilla: #FF69B4;
+    --chocolate: #9B59B6;
+}
+
+html, body {
+    overflow: hidden;
+    background-color: #FF6B6B;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+/* PARTICLES */
+.particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.particles span {
+    position: absolute;
+    top: -10px;
+    width: 3px;
+    height: 3px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #fff;
+    animation: fall linear infinite;
+    opacity: 0;
+}
+
+@keyframes fall {
+    0% { transform: translateY(0); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(200px); opacity: 0; }
+}
+
+.card {
+    position: relative;
+    width: 390px;
+    height: 550px;
+    border: 10px solid var(--border-color);
+    box-shadow: inset 10px 0px 15px rgba(0,0,0,0.1);
+    background-color: rgb(230, 190, 250);
+    z-index: 2;
+}
+
+/* TAP OPEN */
+.card.open .front {
+    transform: perspective(800px) rotateY(-170deg);
+}
+
+.text-container {
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+}
+
+/* HIDE SCROLLBAR */
+.text-container::-webkit-scrollbar {
+    display: none;
+}
+.text-container {
+    scrollbar-width: none;
+}
+
+#head {
+    font-family: 'Nobile', sans-serif;
+    font-size: 1.3em;
+    margin: 15px auto;
+    text-align: center;
+}
+
+#typing-text {
+    white-space: pre-line;
+    text-align: center;
+    font-family: 'Nobile';
+    color: #580803;
+    font-style: italic;
+    font-size: 0.85em;
+    margin-top: 10px;
+    padding-right: 5px;
+}
+
+/* CURSOR */
+#typing-text::after {
+    content: "|";
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+.front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 10px solid var(--border-color);
+    background-color: rgb(207, 45, 240);
+    transform-origin: left;
+    transition: 0.8s;
+    z-index: 10;
+}
+
+.hover-text {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+}
+
+.cake {
+    position: absolute;
+    width: 100px;
+    height: 80px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.layer {
+    width: 100px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--chocolate);
+    position: absolute;
+}
+
+.layer-top { top: 0; }
+.layer-middle { top: 13px; }
+.layer-bottom { top: 26px; }
+
+.icing {
+    width: 96px;
+    height: 36px;
+    background: var(--vanilla);
+    border-radius: 50%;
+    position: absolute;
+    top: 1px;
+    left: 2px;
+}
+
+.candle {
+    width: 6px;
+    height: 20px;
+    background: #9B59B6;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.flame {
+    width: 6px;
+    height: 14px;
+    background: orange;
+    position: absolute;
+    top: -14px;
+    border-radius: 50%;
+    animation: flicker 1s infinite;
+}
+
+@keyframes flicker {
+    50% { opacity: 0.5; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="particles"></div>
+
+<div class="card">
+    <div class="front">
+        <div class="hover-text">Tap Dongggg 😆</div>
+
+        <div class="cake">
+            <div class="layer layer-bottom"></div>
+            <div class="layer layer-middle"></div>
+            <div class="layer layer-top"></div>
+            <div class="icing"></div>
+            <div class="candle">
+                <div class="flame"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-container">
+        <p id="head">Happy Birthday Eyinnn!</p>
+        <div id="typing-text"></div>
+        <p style="text-align: center; width:100%;">You're Still My Favorite Person</p>
+    </div>
+</div>
+
+<script>
+// PARTICLES
+const container = document.querySelector('.particles');
+
+function createParticle() {
+    let p = document.createElement('span');
+    let size = Math.random() * 2 + 1;
+
+    p.style.width = size + 'px';
+    p.style.height = size + 'px';
+    p.style.left = Math.random() * 100 + '%';
+
+    let duration = Math.random() * 4 + 1;
+    p.style.animationDuration = duration + 's';
+
+    container.appendChild(p);
+    setTimeout(() => p.remove(), duration * 1000);
+}
+
+setInterval(() => {
+    for (let i = 0; i < 6; i++) createParticle();
+}, 200);
+
+// TAP OPEN + TYPING
+const card = document.querySelector('.card');
+
+const text = `Aloooo Eyinnnn! 🥳
+Happy Birthday yaaa!
+Gila ya, nambah tua lagi lu wkwkwk  
+Tapi gapapa, yang penting makin dewasa dikit lah ya 
+Semoga sehat terus, bahagia terus,
+yang lo pengen bisa tercapai satu-satu.
+Seblaknya dikurangin ya 
+Makasih udah jadi orang yang selalu seru
+dan punya tempat sendiri di hidup gw.
+Maaf cuma bisa ngasih ini,
+tapi doa gw yang terbaik buat lo.
+Stay jadi Eyin yang gue kenal yaa   
+dan jangan lupa traktir hehehehehe `;
+
+let i = 0;
+
+function typing() {
+    if (i < text.length) {
+        document.getElementById("typing-text").textContent += text.charAt(i);
+        i++;
+        setTimeout(typing, 30);
+    }
+}
+
+card.addEventListener('click', () => {
+    card.classList.toggle('open');
+
+    if (!card.classList.contains('started')) {
+        card.classList.add('started');
+        typing();
+    }
+});
+</script>
+
+</body>
+</html>
